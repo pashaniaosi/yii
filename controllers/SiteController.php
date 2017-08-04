@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\Country;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -14,6 +13,7 @@ use app\models\EntryForm;
 
 class SiteController extends Controller
 {
+    //public $layout = 'test'; //修改控制器渲染视图时使用的布局文件
     /**
      * @inheritdoc
      */
@@ -64,18 +64,6 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
-    }
-
-    public function actionTest(){
-        $model = new \app\models\ContactForm;
-
-        $model['name'] = 'example';
-        echo $model['name'];
-
-
-        foreach ($model as $name => $value) {
-            echo "$name: $value<br>";
-        }
     }
 
     /**
@@ -155,4 +143,7 @@ class SiteController extends Controller
             return $this->render('entry', ['model' => $model]);
         }
     }
+
+    //尝试查看原有模型默认的属性值
+
 }

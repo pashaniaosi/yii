@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+//use yii\helpers\HtmlPurifier;
 ?>
 <p>You have entered the following information:</p>
 <ul>
