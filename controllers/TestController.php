@@ -43,6 +43,8 @@ class TestController extends Controller
         $model->body = isset($data['body']) ? $data['body'] : null;
         此段代码和下一行代码的作用相同，都是将 ContactForm 的属性赋空值*/
         $model->attributes = \Yii::$app->request->post('ContactForm');//块赋值
+        /*
+        //原代码
         if($model->validate()){
 
         } else {
@@ -52,6 +54,10 @@ class TestController extends Controller
                     echo "$key: $string<br>";
                 }
             }
+        }*/
+        //改进的代码
+        if(!$model->validate()){
+            print_r($model->getFirstErrors());
         }
     }
 
