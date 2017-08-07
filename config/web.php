@@ -10,7 +10,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'AChBTiN_220Xa8Lj9QWq6OOQl8gPRMFc',
+            'cookieValidationKey' => 'ljaFk9CoLgt8HnEEiaCy0FND8szRQQAm',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -49,6 +49,13 @@ $config = [
         */
     ],
     'params' => $params,
+//    'layout' => 'test', // 修改默认的布局
+    'modules' => [
+        'forum' => [
+            'class' => 'app\modules\forum\Module',
+            // ... 模块其他配置 ...
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
@@ -64,7 +71,7 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '::1', '192.168.0.*', '192.168.33.1'],
+        //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 }
 

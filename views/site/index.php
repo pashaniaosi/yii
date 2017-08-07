@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application'; //在内容视图中设置页面标题
+$this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 

@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
@@ -24,11 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-        <?php echo $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
-        <?php echo $form->field($model, 'password')->passwordInput() ?>
+        <?= $form->field($model, 'password')->passwordInput() ?>
 
-        <?php echo $form->field($model, 'rememberMe')->checkbox([
+        <?= $form->field($model, 'rememberMe')->checkbox([
             'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
         ]) ?>
 

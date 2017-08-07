@@ -13,7 +13,6 @@ use app\models\EntryForm;
 
 class SiteController extends Controller
 {
-    //public $layout = 'test'; //修改控制器渲染视图时使用的布局文件
     /**
      * @inheritdoc
      */
@@ -52,9 +51,6 @@ class SiteController extends Controller
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
-            'test' => [
-                'class' => 'yii\web\ViewAction',
             ],
         ];
     }
@@ -146,7 +142,5 @@ class SiteController extends Controller
             return $this->render('entry', ['model' => $model]);
         }
     }
-
-    //尝试查看原有模型默认的属性值
 
 }

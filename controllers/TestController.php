@@ -4,6 +4,7 @@
  */
 namespace app\controllers;
 
+use Yii;
 use yii\web\Controller;
 use app\models\ContactForm;
 
@@ -59,6 +60,13 @@ class TestController extends Controller
         if(!$model->validate()){
             print_r($model->getFirstErrors());
         }
+    }
+
+
+
+    public function actionGetVersion()
+    {
+        return yii::getVersion();
     }
 
 }
