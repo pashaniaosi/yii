@@ -7,6 +7,9 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\ContactForm;
+use yii\helpers\Url;
+use yii\bootstrap\Alert;
+use yii\base\ErrorException;
 
 class TestController extends Controller
 {
@@ -67,6 +70,69 @@ class TestController extends Controller
     public function actionGetVersion()
     {
         return yii::getVersion();
+    }
+
+    public function actionCreateUrl()
+    {
+        echo Url::to(['site/index'], 'https');
+    }
+
+    public function actionInfo()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return [
+            'message' => 'hello world',
+            'code' => 100,
+        ];
+//        以下代码块和以上的代码作用一致
+        /*return \Yii::createObject([
+        'class' => 'yii\web\Response',
+            'format' => \yii\web\Response::FORMAT_JSON,
+            'data' => [
+        'message' => 'hello world',
+        'code' => 100,
+    ],
+        ]);*/
+    }
+
+    public function actionSession()
+    {
+        $session = Yii::$app->session;
+//        开启session
+        $session->open();
+//        关闭session
+//        $session->close();
+//        销毁session中所有已注册的数据
+//        $session->destroy();
+        if ($session->isActive)
+        {
+            echo 'session开启<br>';
+        }
+//        session 组件会限制你直接修改数据中的单元项，所以以下代码不会生效
+//        $session['captcha']['number'] = 5;
+//        $session['captcha']['lifetime'] = 3600;
+        $session['captcha'] = [
+            'number' => 5,
+            'lifetime' => 3600,
+        ];
+
+        echo $session['captcha']['lifetime'];
+    }
+
+    public function actionFlash()
+    {
+        $session = Yii::$app->session;
+
+// 设置一个名为"postDeleted" flash 信息
+        $session->setFlash('postDeleted', 'You have successfully deleted your post.');
+
+// 显示名为"postDeleted" flash 信息
+        echo $session->getFlash('postDeleted').'<br>';
+// 使用 yii\bootstrap\Alert 小部件
+        echo Alert::widget([
+            'options' => ['class' => 'alert-info'],
+            'body' => Yii::$app->session->getFlash('postDeleted'),
+        ]);
     }
 
 }
