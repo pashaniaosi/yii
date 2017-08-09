@@ -9,7 +9,6 @@ use yii\web\Controller;
 use app\models\ContactForm;
 use yii\helpers\Url;
 use yii\bootstrap\Alert;
-use yii\base\ErrorException;
 
 class TestController extends Controller
 {
@@ -133,6 +132,17 @@ class TestController extends Controller
             'options' => ['class' => 'alert-info'],
             'body' => Yii::$app->session->getFlash('postDeleted'),
         ]);
+    }
+
+    public function actionDownload()
+    {
+        return \Yii::$app->response->sendFile(__DIR__.'/SiteController.php')->send();
+    }
+
+    public function actionEchoAlias()
+    {
+        Yii::setAlias('@rootpath', __DIR__.'/TestController.php');
+        echo Yii::getAlias('@rootpath');
     }
 
 }
