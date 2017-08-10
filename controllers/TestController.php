@@ -145,4 +145,60 @@ class TestController extends Controller
         echo Yii::getAlias('@rootpath');
     }
 
+    public function actionSql()
+    {
+//        使用Yii::$app->db来访问数据库连接
+        $command = Yii::$app->db->createCommand('SELECT * FROM country where name = :name');
+        $post1 = $command->bindValue(':name', 'China')->queryOne(); //防止SQL注入攻击
+
+        print_r($post1);
+
+        $count = Yii::$app->db->createCommand("SELECT [[name]] FROM {{country}}")
+            ->queryScalar();
+        echo $count;
+
+    }
+
+    public function actionEchoSql()
+    {
+        $command = (new \yii\db\Query())
+            ->select(['code', 'name'])
+            ->from('country')
+            ->where(['>', 'population', '1000000'])
+            ->limit(10)
+            ->createCommand();
+
+        $query = (new \yii\db\Query())
+            ->from('country')
+            ->limit(10)
+            ->indexBy('code')
+            ->all();
+
+// 按索引排列数组
+        print_r($query);
+
+// 打印 SQL 语句
+        echo $command->sql . '<br>';
+// 打印被绑定的参数
+        print_r($command->params);
+
+// 返回查询结果的所有行
+        $rows = $command->queryAll();
+
+        print_r($rows);
+
+        $sql = (new \yii\db\Query())
+            ->from('country')
+            ->indexBy('code');
+
+        foreach ($sql->batch() as $users) {
+            var_dump($users);
+        }
+
+        foreach ($sql -> each() as $user)
+        {
+            var_dump($user);
+        }
+    }
+
 }
