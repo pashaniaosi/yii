@@ -10,6 +10,8 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\EntryForm;
+use yii\web\UploadedFile;
+use app\models\UploadForm;
 
 class SiteController extends Controller
 {
@@ -133,6 +135,7 @@ class SiteController extends Controller
     public function actionEntry()
     {
         $model = new EntryForm;//用户输入的数据
+
         if ($model->load(Yii::$app->request->post())&&$model->validate()){
             //验证成功了，就创建一个 entry-confirm 的动作
             return $this->render('entry-confirm', ['model' => $model]);
@@ -143,4 +146,18 @@ class SiteController extends Controller
         }
     }
 
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFile');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return;
+            }
+        }
+
+        return $this->render('upload', ['model' => $model]);
+    }
 }
