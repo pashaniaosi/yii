@@ -107,7 +107,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function tableName()
     {
-        return 'shop_user';
+        return '{{%user}}';
     }
 
     /**
@@ -143,7 +143,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function setPassword($password)
     {
-        $this->pwd = md5($password);
+        $this->pwd = $password;
     }
     /**
      * @inheritdoc
@@ -228,7 +228,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function validatePassword($password)
     {
-        return $this->pwd === md5($password);
+        return $this->pwd === $password;
     }
 
 }
