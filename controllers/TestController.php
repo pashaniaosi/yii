@@ -201,4 +201,41 @@ class TestController extends Controller
         }
     }
 
+    public function actionFormatter()
+    {
+        $formatter = \Yii::$app->formatter;
+
+// output: January 1, 2014
+        echo $formatter->asDate('2014-01-01', 'long').'<br>';
+
+// output: 12.50%
+        echo $formatter->asPercent(0.125, 2).'<br>';
+
+// output: <a href="mailto:lukace@qq.com">lukace@qq.com</a>
+        echo $formatter->asEmail('lukace@qq.com').'<br>';
+
+// output: Yes
+        echo $formatter->asBoolean(true).'<br>';
+// it also handles display of null values:
+
+// output: (not set)
+        echo $formatter->asDate(null).'<br>';
+
+// output: January 1, 2014
+        echo $formatter->format('2014-01-01', 'date').'<br>';
+
+// Localizing Data Format
+        // output: January 1, 2014
+        $formatter->locale = 'en-US';
+        echo $formatter->asDate('2014-01-01').'<br>';
+
+        // output: 1. Januar 2014
+        $formatter->locale = 'de-DE';
+        echo $formatter->asDate('2014-01-01').'<br>';
+
+        // output: 1 января 2014 г
+        $formatter->locale = 'ru-RU';
+        echo $formatter->asDate('2014-01-01').'<br>';
+    }
+
 }

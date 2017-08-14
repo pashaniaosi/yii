@@ -15,10 +15,10 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'user' => [
+        /*'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
-        ],
+        ],*/
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -47,6 +47,14 @@ $config = [
             ],
         ],
 
+//        配置 formatting rules
+        /*'formatter' => [
+            'dateFormat' => 'dd.MM.yyyy',
+            'decimalSeparator' => ',',
+            'thousandSeparator' => ' ',
+            'currencyCode' => 'EUR',
+        ],*/
+
     ],
     'params' => $params,
 //    'layout' => 'test', // 修改默认的布局
@@ -54,6 +62,13 @@ $config = [
         'forum' => [
             'class' => 'app\modules\forum\Module',
             // ... 模块其他配置 ...
+        ],
+
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'confirmWithin' => 21600,
+            'cost' => 12,
+            'admins' => ['admin']
         ],
     ],
 ];

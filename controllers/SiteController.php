@@ -12,6 +12,7 @@ use app\models\ContactForm;
 use app\models\EntryForm;
 use yii\web\UploadedFile;
 use app\models\UploadForm;
+use app\models\SignupForm;
 
 class SiteController extends Controller
 {
@@ -72,6 +73,26 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
+
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                // $login = new SiteLoginForm();
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->goHome();
+                } else {
+                    var_dump($user);
+                }
+            }
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
