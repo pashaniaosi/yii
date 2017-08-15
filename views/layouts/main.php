@@ -54,23 +54,41 @@ AppAsset::register($this);
             )
         ],
     ]);*/
-    $navItems=[
+    $navLeft=[
         ['label' => '首页', 'url' => ['/site/index']],
-//        ['label' => 'Status', 'url' => ['/status/index']],
         ['label' => '关于', 'url' => ['/site/about']],
         ['label' => '联系', 'url' => ['/site/contact']]
     ];
+    $navRight=[
+//        ['label' => '首页', 'url' => ['/site/index']],
+//        ['label' => '关于', 'url' => ['/site/about']],
+//        ['label' => '联系', 'url' => ['/site/contact']]
+    ];
     if (Yii::$app->user->isGuest) {
-        array_push($navItems,['label' => '登入', 'url' => ['/site/login']],['label' => '注册', 'url' => ['/site/signup']]);
+        array_push($navRight,['label' => '登入', 'url' => ['/site/login']],['label' => '注册', 'url' => ['/site/signup']]);
     } else {
-        array_push($navItems,['label' => '登出 (' . Yii::$app->user->identity->username . ')',
-                'url' => ['/site/logout'],
-                'linkOptions' => ['data-method' => 'post']]
+        array_push($navRight,['label' => '<img src = "'.Yii::$app->params['avatar']['small'].'" class="avatar-img" alt="'. Yii::$app->user->identity->username.'"> ',
+
+                'linkOptions' => ['class' => 'avatar'],
+                'items' => [
+                    ['label' => '退出', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']],
+                    ['label' => '个人中心'],
+                ],
+            ]
+
+
+
         );
     }
     echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left'],
+        'items' => $navLeft,
+    ]);
+    echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $navItems,
+//       不过滤代码标签
+        'encodeLabels' => false,
+        'items' => $navRight,
     ]);
     NavBar::end();
     ?>
