@@ -79,11 +79,12 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                // $login = new SiteLoginForm();
+//                如果用户创建成功，就登入该用户
                 if (Yii::$app->getUser()->login($user)) {
+//                    登入成功，就返回首页
                     return $this->goHome();
                 } else {
-                    var_dump($user);
+                    throw new \Exception('用户登入失败, 请重试!');
                 }
             }
         }

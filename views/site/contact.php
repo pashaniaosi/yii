@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Contact';
+$this->title = '联系';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
@@ -33,9 +33,24 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php else: ?>
 
+<!--        <p>-->
+<!--            If you have business inquiries or other questions, please fill out the following form to contact us.-->
+<!--            Thank you.-->
+<!--        </p>-->
         <p>
-            If you have business inquiries or other questions, please fill out the following form to contact us.
-            Thank you.
+            如果你有任何交易活动或是发现任何问题, 请填入以下信息来联系我们. 谢谢<!doctype html>
+            <html lang="zh-CN">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport"
+                      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+                <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                <title>Document</title>
+            </head>
+            <body>
+
+            </body>
+            </html>
         </p>
 
         <div class="row">
@@ -56,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                        <?= Html::submitButton('提交', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>

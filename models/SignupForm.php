@@ -7,6 +7,7 @@
  */
 namespace app\models;
 
+use Codeception\Module\Db;
 use Yii;
 use yii\base\Model;
 
@@ -28,19 +29,31 @@ class SignupForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'username' => '用户名',
+            'password' => '密码',
+        ];
+    }
+
     public function signup()
     {
+
         if ($this->validate()) {
             $user = new User();
-            $user->username = $this->username;
-//            $user->email = $this->email;
-            $user->setPassword($this->password);
-//            $user->generateAuthKey();
-            if ($user->save()) {
-                return $user;
-            }
-        }
+            $list = [
+                'username' => $this->username,
+                'password' => $this->password
+            ];
+            $user->setAttributes($list);
 
+            if (!$user->save()) {
+                throw new \Exception(current($user->getFirstErrors()));
+            }
+            return $user;
+        }
         return null;
     }
 }
