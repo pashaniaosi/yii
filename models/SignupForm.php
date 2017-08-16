@@ -15,6 +15,10 @@ class SignupForm extends Model
 {
     public $username;
     public $password;
+    public $mail;
+    public $rePassword;
+    public $verifyCode;
+
     public function rules()
     {
         return [
@@ -22,10 +26,14 @@ class SignupForm extends Model
             ['username', 'required','message' => '用户名不能为空'],
             ['username', 'unique', 'targetClass' => 'app\models\User', 'message' => '用户名已存在'],
             ['username', 'string', 'min' => 2, 'max' => 255],
+//            ['username', 'match', 'pattern'=> '//', 'message' => '用户名不能以下划线、数字开头'],
 
 
-            ['password', 'required','message' => '密码不能为空'],
-            ['password', 'string', 'min' => 6],
+            [['password', 'rePassword'], 'required','message' => '密码不能为空'],
+            [['password', 'rePassword'], 'string', 'min' => 6],
+            ['rePassword', 'compare', 'compareAttribute' => 'password', 'message' => '两次密码不一致'],
+
+            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -35,6 +43,8 @@ class SignupForm extends Model
             'id' => 'ID',
             'username' => '用户名',
             'password' => '密码',
+            'rePassword' => '重复密码',
+            'verifyCode' => '验证码',
         ];
     }
 

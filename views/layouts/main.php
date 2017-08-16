@@ -57,7 +57,8 @@ AppAsset::register($this);
     $navLeft=[
         ['label' => '首页', 'url' => ['/site/index']],
         ['label' => '关于', 'url' => ['/site/about']],
-        ['label' => '联系', 'url' => ['/site/contact']]
+        ['label' => '联系', 'url' => ['/site/contact']],
+        ['label' => '文章', 'url' => ['/post/index']],
     ];
     $navRight=[
 //        ['label' => '首页', 'url' => ['/site/index']],
@@ -67,7 +68,7 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         array_push($navRight,['label' => '登入', 'url' => ['/site/login']],['label' => '注册', 'url' => ['/site/signup']]);
     } else {
-        array_push($navRight,['label' => '<img src = "'.Yii::$app->params['avatar']['small'].'" class="avatar-img" alt="'. Yii::$app->user->identity->username.'"> ',
+        array_push($navRight,['label' => '<img src = "'.Yii::$app->params['avatar']['defaultImage'].'" class="avatar-img" alt="'. Yii::$app->user->identity->username.'"> ',
 
                 'linkOptions' => ['class' => 'avatar'],
                 'items' => [

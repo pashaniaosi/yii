@@ -4,13 +4,13 @@
  */
 namespace app\controllers;
 
+use app\controllers\base\BaseController;
 use Yii;
-use yii\web\Controller;
 use app\models\ContactForm;
 use yii\helpers\Url;
 use yii\bootstrap\Alert;
 
-class TestController extends Controller
+class TestController extends BaseController
 {
     public $layout = 'main';
     public function actionIndex()

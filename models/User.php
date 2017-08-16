@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+use app\models\base\Base;
 
 
 /**
@@ -12,7 +13,7 @@ namespace app\models;
  * @property string $password
  * @property string $avatar
  */
-class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
+class User extends Base implements \yii\web\IdentityInterface
 {
     /*private static $users = [
         '100' => [

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\models\base\Base;
 use Yii;
 
 /**
@@ -11,7 +12,7 @@ use Yii;
  * @property string $name
  * @property integer $population
  */
-class Country extends \yii\db\ActiveRecord
+class Country extends Base
 {
     /**
      * @inheritdoc
@@ -40,9 +41,9 @@ class Country extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'code' => 'Code',
-            'name' => 'Name',
-            'population' => 'Population',
+            'code' => Yii::t('app','代号'),
+            'name' => Yii::t('app', '名称'),
+            'population' => Yii::t('app', '人口'),
         ];
     }
 }

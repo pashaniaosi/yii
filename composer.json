@@ -21,7 +21,8 @@
         "yiisoft/yii2-jui": "^2.0",
         "yiisoft/yii2-sphinx": "^2.0",
         "yiisoft/yii2-apidoc": "~2.1.0",
-        "dektrium/yii2-user": "^0.9.12"
+        "dektrium/yii2-user": "^0.9.12",
+        "bailangzhan/yii2-webuploader": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

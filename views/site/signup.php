@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>请填入以下的内容完成注册:</p>
+    <p>请填写以下的内容完成注册:</p>
 
     <div class="row">
         <div class="col-lg-5">
@@ -22,6 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'username') ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
+
+                <?php echo $form->field($model, 'rePassword')->passwordInput(); ?>
+
+                <?php echo $form->field($model, 'verifyCode')->widget(\yii\captcha\Captcha::className()); ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('注册', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
