@@ -177,6 +177,25 @@ class PostForm extends Model
     }
 
     /**
+     * 格式化数据
+     */
+    public static function _formatList($data)
+    {
+        foreach ($data as &$list)
+        {
+            $list['tags'] = [];
+            if(isset($list['relate']) && !empty($list['relate']))
+            {
+                foreach ($list['relate'] as $item) {
+                    $list['tags'][] = $item['tag']['tag_name'];
+                }
+            }
+            unset($list['relate']);
+        }
+        return $data;
+    }
+
+    /**
      * 通过 post_id 来获取视图的信息
      */
     public function getViewById($post_id)
@@ -200,5 +219,29 @@ class PostForm extends Model
 //        去除数组中无用的数据
         unset($data['relate']);
         return $data;
+    }
+
+    /**
+     * 查询文章列表数据
+     */
+    public static function getList($condition, $curPage = 1, $pageSize = 5, $orderBy = ['id' => SORT_DESC])
+    {
+        $model = new Post();
+        $select = [
+            'id', 'title', 'summary', 'label_img', 'cat_id', 'user_id', 'user_name', 'is_valid', 'created_at', 'updated_at'
+        ];
+        $query = $model
+            ->find()
+            ->select($select)
+            ->where($condition)
+            ->with('relate.tag', 'extend')
+            ->orderBy($orderBy);
+
+//        获取分页数据
+        $res = $model->getPages($query, $curPage, $pageSize);
+
+//        格式化数据, 满足对数据的要求
+        $res['data'] = self::_formatList($res['data']);
+        return $res;
     }
 }

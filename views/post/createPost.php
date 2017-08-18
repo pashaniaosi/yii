@@ -24,8 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?php echo $form->field($model, 'cat_id')->dropDownList($cat); ?>
 
-<!--            --><?php //echo $form->field($model, 'label_image')->textInput(['maxlength' => true]); ?>
-
             <?php echo $form->field($model, 'label_img')->widget('app\widgets\file_upload\FileUpload',[
                     'config' => [
                             'domain_url' => 'http://yii-web.dev.com/',
