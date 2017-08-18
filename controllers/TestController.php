@@ -238,4 +238,10 @@ class TestController extends BaseController
         echo $formatter->asDate('2014-01-01').'<br>';
     }
 
+    public function actionDir()
+    {
+        echo dirname(__DIR__.'/web/images').'<br>';
+        echo dirname(__DIR__.'/web').'<br>';
+    }
+
 }

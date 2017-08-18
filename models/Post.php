@@ -22,12 +22,28 @@ use Yii;
  */
 class Post extends Base
 {
+    const NOT_VALID = 0; // 未发布
+    const IS_VALID = 1; // 发布
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
         return 'posts';
+    }
+
+    /**
+     * 获取 Post 的关联数组
+     */
+    public function getRelate()
+    {
+
+        return $this->hasMany(RelationPostTag::className(), ['post_id' => 'id']); // 文章的 id
+    }
+
+    public function getExtend()
+    {
+        return $this->hasOne(PostExtend::className(), ['post_id' => 'id']);
     }
 
     /**

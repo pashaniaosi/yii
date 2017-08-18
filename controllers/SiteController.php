@@ -24,13 +24,20 @@ class SiteController extends BaseController
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout',],
                         'allow' => true,
+//                        表示登入了才能访问
                         'roles' => ['@'],
                     ],
+                    [
+                        'actions' => ['signup'],
+                        'allow' => true,
+//                        表示没登入才能访问
+                        'roles' => ['?'],
+                    ]
                 ],
             ],
             'verbs' => [

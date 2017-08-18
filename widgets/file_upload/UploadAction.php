@@ -10,7 +10,6 @@ namespace app\widgets\file_upload;
 use Yii;
 use yii\base\Action;
 use yii\helpers\ArrayHelper;
-use app\widgets\file_upload\Uploader;
 
 class UploadAction extends Action
 {

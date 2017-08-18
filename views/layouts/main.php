@@ -76,9 +76,6 @@ AppAsset::register($this);
                     ['label' => '个人中心'],
                 ],
             ]
-
-
-
         );
     }
     echo Nav::widget([

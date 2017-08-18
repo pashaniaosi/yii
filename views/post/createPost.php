@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?php echo $form->field($model, 'label_img')->widget('app\widgets\file_upload\FileUpload',[
                     'config' => [
-                            'domain_url' => 'http://yii.dev.com/web/',
+                            'domain_url' => 'http://yii-web.dev.com/',
                     ]
             ]); ?>
 
