@@ -107,7 +107,8 @@ $config = [
         'db' => $db,
 
         'urlManager' => [
-            'enablePrettyUrl' => false,
+            'class' => 'yii\web\UrlManager',
+            'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],

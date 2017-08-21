@@ -27,6 +27,7 @@ class Base extends ActiveRecord
         if($search)
             $query = $query->andFilterWhere($search);
         $data['count'] = $query->count();
+//        如果 data 是个空数组, 则返回以下数组
         if(!$data['count'])
         {
             return ['count' => 0, 'curPage' => $curPage, 'pageSize' => $pageSize, 'start' => 0, 'end' => 0,

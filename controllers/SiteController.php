@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\controllers\base\BaseController;
+use app\models\FeedForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Response;
@@ -76,11 +77,9 @@ class SiteController extends BaseController
     }
 
     /**
-     * Login action.
-     *
-     * @return Response|string
+     * @return string|Response
+     * @throws \Exception
      */
-
     public function actionSignup()
     {
         $model = new SignupForm();
@@ -101,6 +100,11 @@ class SiteController extends BaseController
         ]);
     }
 
+    /**
+     * Login action.
+     *
+     * @return Response|string
+     */
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -188,5 +192,22 @@ class SiteController extends BaseController
         }
 
         return $this->render('upload', ['model' => $model]);
+    }
+
+    /**
+     * 发布留言
+     */
+    public function actionAddFeed()
+    {
+        $model = new FeedForm();
+        $model->content = Yii::$app->request->post('content');
+        if($model->validate())
+        {
+            if($model->create()){
+                return json_encode(['status' => true]);
+            }
+        }
+//        此处有问题
+        return json_decode(['status' => false, 'msg' => '发布失败']);
     }
 }

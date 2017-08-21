@@ -15,63 +15,6 @@ use app\models\base\Base;
  */
 class User extends Base implements \yii\web\IdentityInterface
 {
-    /*private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
-
-    /**
-     * @inheritdoc
-     */
-    /*public static function findIdentity($id)
-    {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    /*public static function findIdentityByAccessToken($token, $type = null)
-    {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
-     */
-    /*public static function findByUsername($username)
-    {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
-    }*/
-
     /**
      * @inheritdoc
      */
@@ -89,7 +32,7 @@ class User extends Base implements \yii\web\IdentityInterface
             [['username', 'password'], 'required'],
             [['username', 'password', 'avatar'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
-       ];
+        ];
     }
 
     /**
@@ -200,4 +143,61 @@ class User extends Base implements \yii\web\IdentityInterface
     {
         return $this->password === $password;
     }
+
+    /*private static $users = [
+        '100' => [
+            'id' => '100',
+            'username' => 'admin',
+            'password' => 'admin',
+            'authKey' => 'test100key',
+            'accessToken' => '100-token',
+        ],
+        '101' => [
+            'id' => '101',
+            'username' => 'demo',
+            'password' => 'demo',
+            'authKey' => 'test101key',
+            'accessToken' => '101-token',
+        ],
+    ];
+
+
+    /**
+     * @inheritdoc
+     */
+    /*public static function findIdentity($id)
+    {
+        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    /*public static function findIdentityByAccessToken($token, $type = null)
+    {
+        foreach (self::$users as $user) {
+            if ($user['accessToken'] === $token) {
+                return new static($user);
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Finds user by username
+     *
+     * @param string $username
+     * @return static|null
+     */
+    /*public static function findByUsername($username)
+    {
+        foreach (self::$users as $user) {
+            if (strcasecmp($user['username'], $username) === 0) {
+                return new static($user);
+            }
+        }
+
+        return null;
+    }*/
 }

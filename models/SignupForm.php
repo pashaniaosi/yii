@@ -15,7 +15,6 @@ class SignupForm extends Model
 {
     public $username;
     public $password;
-    public $mail;
     public $rePassword;
     public $verifyCode;
 

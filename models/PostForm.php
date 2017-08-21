@@ -201,7 +201,11 @@ class PostForm extends Model
     public function getViewById($post_id)
     {
 //        获取数据
-        $data = Post::find()->with('relate.tag', 'extend')->where(['id' => $post_id])->asArray()->one(); // relate 用来访问和 post 关联的数据库 relation_post_tags, relate.tag 用来关联和 post 二重关联的数据库 tags
+        $data = Post::find()
+            ->with('relate.tag', 'extend')
+            ->where(['id' => $post_id])
+            ->asArray()
+            ->one(); // relate 用来访问和 post 关联的数据库 relation_post_tags, relate.tag 用来关联和 post 二重关联的数据库 tags
         if(!$data)
         {
             throw new NotFoundHttpException(Yii::t('app', '文章不存在!'));

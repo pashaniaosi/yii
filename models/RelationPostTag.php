@@ -36,8 +36,15 @@ class RelationPostTag extends Base
     public function rules()
     {
         return [
-            [['post_id', 'tag_id'], 'integer'],
-            [['post_id', 'tag_id'], 'unique', 'targetAttribute' => ['post_id', 'tag_id'], 'message' => 'The combination of 文章ID and 标签ID has already been taken.'],
+            [
+                ['post_id', 'tag_id'],
+                'integer'
+            ],
+            [
+                ['post_id', 'tag_id'],
+                'unique', 'targetAttribute' => ['post_id', 'tag_id'],
+                'message' => 'The combination of 文章ID and 标签ID has already been taken.'
+            ],
         ];
     }
 

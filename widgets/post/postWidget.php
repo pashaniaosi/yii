@@ -15,19 +15,19 @@ use yii\base\Widget;
 use yii\data\Pagination;
 use yii\helpers\Url;
 
-class postwidget extends Widget
+class postWidget extends Widget
 {
 //    文章列表的标题
     public $title = '';
 
-//    显示文章的数量, 默认显示 6 个
+//    显示每页的文章的数量, 默认显示 6 个
     public $limit = 6;
 
 //    是否显示更多, 默认 true
     public $more = true;
 
 //    是否显示分页, 默认 false
-    public $page = false;
+    public $page = true;
 
     public function run()
     {

@@ -6,6 +6,7 @@
  * Time: 9:59
  */
 
+use \yii\helpers\Url;
 $this->title = $data['title'];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', '文章'), 'url' => ['post/index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -36,6 +37,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <div class="col-lg-3">
-
+        <div class="panel">
+            <?php if(!\Yii::$app->user->isGuest): ?>
+                <a class="btn btn-success btn-block btn-post" href="<?=Url::to(['post/create'])?>">创建文章</a>
+                <?php if(\Yii::$app->user->identity->id == $data['user_id']): ?>
+                    <a class="btn btn-info btn-block btn-post" href="<?=Url::to(['post/update', 'id' => $data['id']])?>">编辑文章</a>
+                <?php endif;?>
+            <?php endif;?>
+        </div>
     </div>
 </div>

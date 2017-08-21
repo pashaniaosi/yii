@@ -31,7 +31,7 @@ class PostController extends BaseController
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['create', 'upload', 'ueditor'],
+                        'actions' => ['create', 'upload', 'ueditor', ],
                         'allow' => true,
 //                        @ 表示登陆了才能访问
                         'roles' => ['@'],
