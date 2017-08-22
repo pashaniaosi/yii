@@ -19,11 +19,23 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
-                <?= $form->field($model, 'username') ?>
+                <?php echo $form->field($model, 'username', [
+                    'inputOptions' => [
+                        'placeholder' => '请输入用户名',
+                    ]
+                ]); ?>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+                <?php echo $form->field($model, 'password', [
+                    'inputOptions' => [
+                        'placeholder' => '请输入密码',
+                    ]
+                ])->passwordInput(); ?>
 
-                <?php echo $form->field($model, 'rePassword')->passwordInput(); ?>
+                <?php echo $form->field($model, 'rePassword', [
+                        'inputOptions' => [
+                                'placeholder' => '请再次输入密码',
+                        ]
+                ])->passwordInput(); ?>
 
                 <?php echo $form->field($model, 'verifyCode')->widget(\yii\captcha\Captcha::className()); ?>
 

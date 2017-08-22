@@ -20,7 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-body">
             <?php $form = ActiveForm::begin()?>
 
-            <?php echo $form->field($model, 'title')->textInput(['maxlength' => true]); ?>
+            <?php echo $form->field($model, 'title',[
+                    'inputOptions' => [
+                            'placeholder' => '请输入标题',
+                    ]
+            ])->textInput(['maxlength' => true]); ?>
 
             <?php echo $form->field($model, 'cat_id')->dropDownList($cat); ?>
 
