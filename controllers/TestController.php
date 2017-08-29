@@ -5,6 +5,7 @@
 namespace app\controllers;
 
 use app\controllers\base\BaseController;
+use app\models\Post;
 use Yii;
 use app\models\ContactForm;
 use yii\helpers\Url;
@@ -148,15 +149,18 @@ class TestController extends BaseController
     public function actionSql()
     {
 //        使用Yii::$app->db来访问数据库连接
-        $command = Yii::$app->db->createCommand('SELECT * FROM country where name = :name');
-        $post1 = $command->bindValue(':name', 'China')->queryOne(); //防止SQL注入攻击
+//        $command = Yii::$app->db->createCommand('SELECT * FROM country where name = :name');
+//        $post1 = $command->bindValue(':name', 'China')->queryOne(); //防止SQL注入攻击
+//
+//        print_r($post1);
+//
+//        $count = Yii::$app->db->createCommand("SELECT [[name]] FROM {{country}}")
+//            ->queryScalar();
+//        echo $count;
 
-        print_r($post1);
-
-        $count = Yii::$app->db->createCommand("SELECT [[name]] FROM {{country}}")
-            ->queryScalar();
-        echo $count;
-
+        $sql = 'select * from posts where id=:id';
+        $res = Post::findBySql($sql, array('id' => '47'))->asArray()->all();
+        print_r($res);
     }
 
     public function actionEchoSql()
